@@ -1,0 +1,38 @@
+{
+  "name": "valesco-monorepo",
+  "version": "1.0.0",
+  "description": "Multi-client monorepo with shared packages and Vercel deployment",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "clean": "turbo clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.6"
+  },
+  "keywords": [
+    "monorepo",
+    "nextjs",
+    "vercel",
+    "typescript",
+    "tailwind"
+  ],
+  "author": "Valesco Team",
+  "license": "MIT"
+}
