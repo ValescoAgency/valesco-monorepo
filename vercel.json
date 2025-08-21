@@ -2,9 +2,6 @@
   "buildCommand": "cd apps/template && pnpm build",
   "outputDirectory": "apps/template/.next",
   "installCommand": "pnpm install",
-  "framework": "nextjs",
-  "functions": {
-    "apps/*/api/**/*.ts": {
-    }
-  }
+  "framework": "nextjs"
+
 }
