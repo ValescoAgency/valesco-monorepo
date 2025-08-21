@@ -1,0 +1,160 @@
+name: Client Validation
+
+on:
+  pull_request:
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8'
+
+jobs:
+  validate-client-structure:
+    name: Validate Client Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate client applications
+        run: |
+          echo "🔍 Validating client application structure..."
+          
+          # Check that all client apps have required files
+          for app in apps/*/; do
+            if [ -d "$app" ]; then
+              app_name=$(basename "$app")
+              echo "📱 Validating $app_name..."
+              
+              # Check for required files
+              if [ -f "$app/package.json" ]; then
+                echo "  ✅ package.json exists"
+              else
+                echo "  ❌ package.json missing"
+                exit 1
+              fi
+              
+              if [ -f "$app/next.config.js" ] || [ -f "$app/next.config.ts" ]; then
+                echo "  ✅ Next.js config exists"
+              else
+                echo "  ❌ Next.js config missing"
+                exit 1
+              fi
+              
+              if [ -d "$app/src" ] || [ -d "$app/app" ]; then
+                echo "  ✅ Source directory exists"
+              else
+                echo "  ❌ Source directory missing"
+                exit 1
+              fi
+              
+              echo "  ✅ $app_name validation complete"
+            fi
+          done
+          
+          echo "🎉 All client applications validated successfully!"
+
+  validate-shared-packages:
+    name: Validate Shared Packages
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate shared packages
+        run: |
+          echo "🔧 Validating shared packages..."
+          
+          # Check that all shared packages have required files
+          for pkg in packages/*/; do
+            if [ -d "$pkg" ]; then
+              pkg_name=$(basename "$pkg")
+              echo "📦 Validating $pkg_name..."
+              
+              # Check for required files
+              if [ -f "$pkg/package.json" ]; then
+                echo "  ✅ package.json exists"
+              else
+                echo "  ❌ package.json missing"
+                exit 1
+              fi
+              
+              if [ -f "$pkg/index.ts" ]; then
+                echo "  ✅ index.ts exists"
+              else
+                echo "  ❌ index.ts missing"
+                exit 1
+              fi
+              
+              echo "  ✅ $pkg_name validation complete"
+            fi
+          done
+          
+          echo "🎉 All shared packages validated successfully!"
+
+  validate-monorepo-config:
+    name: Validate Monorepo Configuration
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate Turborepo config
+        run: |
+          echo "⚡ Validating Turborepo configuration..."
+          
+          if [ -f "turbo.json" ]; then
+            echo "  ✅ turbo.json exists"
+          else
+            echo "  ❌ turbo.json missing"
+            exit 1
+          fi
+          
+          if [ -f "pnpm-workspace.yaml" ]; then
+            echo "  ✅ pnpm-workspace.yaml exists"
+          else
+            echo "  ❌ pnpm-workspace.yaml missing"
+            exit 1
+          fi
+          
+          if [ -f "package.json" ]; then
+            echo "  ✅ Root package.json exists"
+          else
+            echo "  ❌ Root package.json missing"
+            exit 1
+          fi
+          
+          echo "🎉 Monorepo configuration validated successfully!"
