@@ -5,7 +5,7 @@
   "framework": "nextjs",
   "functions": {
     "apps/*/api/**/*.ts": {
-      "runtime": "nodejs18.x"
+      "runtime": "nodejs22.x"
     }
   }
 }
