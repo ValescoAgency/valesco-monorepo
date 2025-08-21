@@ -72,4 +72,5 @@ Once you have client applications:
 - **Build Command**: `cd apps/template && pnpm build`
 - **Output Directory**: `apps/template/.next`
 - **Install Command**: `pnpm install`
-- **Node.js Version**: 18.x or 20.x
+- **Node.js Version**: 18.x (Vercel supported)
+- **Runtime**: nodejs18.x (for API functions)
