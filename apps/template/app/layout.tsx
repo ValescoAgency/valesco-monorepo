@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '@workspace/ui/globals.css';
+import '@valesco/ui/globals.css';
 import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {

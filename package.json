@@ -22,8 +22,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\""
   },
   "devDependencies": {
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
+    "@valesco/eslint-config": "workspace:*",
+    "@valesco/typescript-config": "workspace:*",
     "eslint": "^9.19.0",
     "prettier": "^3.6.2",
     "turbo": "^2.5.6",

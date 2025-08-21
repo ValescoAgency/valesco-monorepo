@@ -3,7 +3,7 @@ import tseslint from '@typescript-eslint/eslint-plugin';
 
 export default defineConfig([
   {
-    extends: ['@workspace/eslint-config/library.js'],
+    extends: ['@valesco/eslint-config/library.js'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
       project: true,
