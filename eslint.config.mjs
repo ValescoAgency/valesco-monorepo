@@ -1,33 +1,20 @@
-import js from '@eslint/js';
-import prettier from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
+import { defineConfig } from 'eslint/config';
+import tseslint from '@typescript-eslint/eslint-plugin';
 
-export default [
-  // Base configuration for all files
-  js.configs.recommended,
-  
-  // All files configuration
+export default defineConfig([
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+    extends: ['@workspace/eslint-config/library.js'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: true,
     },
     plugins: {
-      prettier: prettier,
+      '@typescript-eslint': tseslint,
     },
-    rules: {
-      ...prettierConfig.rules,
-      'prettier/prettier': 'error',
-      'prefer-const': 'error',
-      'no-var': 'error',
-      'no-unused-vars': 'warn',
-    },
-  },
-  
-  // Global ignores
-  {
+    // Global ignores
     ignores: [
+      'apps/**',
+      'packages/**',
       'node_modules/**',
       'dist/**',
       'build/**',
@@ -37,4 +24,4 @@ export default [
       '**/*.json', // Ignore all JSON files
     ],
   },
-];
+]);

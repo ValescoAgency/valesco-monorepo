@@ -3,7 +3,12 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  transpilePackages: ['@valesco/ui', '@valesco/config', '@valesco/types', '@valesco/utils'],
-}
+  transpilePackages: [
+    '@valesco/ui',
+    '@valesco/config',
+    '@valesco/types',
+    '@valesco/utils',
+  ],
+};
 
-module.exports = nextConfig
+export default nextConfig;
