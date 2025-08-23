@@ -1,9 +1,6 @@
 {
   "extends": "@valesco/typescript-config/react-library.json",
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
     "baseUrl": ".",
     "paths": {
       "@valesco/ui/*": ["./src/*"]
