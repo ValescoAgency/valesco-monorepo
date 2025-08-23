@@ -1,3 +1,3 @@
-# `@workspace/eslint-config`
+# `@valesco/eslint-config`
 
 Shared eslint configuration for the workspace.

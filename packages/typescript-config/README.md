@@ -1,3 +1,3 @@
-# `@workspace/typescript-config`
+# `@valesco/typescript-config`
 
 Shared typescript configuration for the workspace.
