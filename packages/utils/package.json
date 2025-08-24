@@ -9,7 +9,8 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "eslint": "^8.56.0",
-    "typescript": "^5.0.0"
+    "@valesco/eslint-config": "workspace:*",
+    "@valesco/typescript-config": "workspace:*",
+    "typescript": "^5.9.2"
   }
 }
